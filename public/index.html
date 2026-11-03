@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8fb">
+  <title>Nivasoft Admin | Insights Publishing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Nivasoft Admin home">
+        <span class="brand-mark">N</span>
+        <span><strong>nivasoft</strong><small>ADMIN CONSOLE</small></span>
+      </a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav>
+        <a class="nav-item active" href="#"><span class="nav-icon">▤</span> Insights publishing</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-icon">?</div>
+        <div><strong>Publishing help</strong><small>Markdown articles for Nivasoft</small></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumbs">Workspace <span>/</span> Insights publishing</div>
+        <div class="user-area"><span class="status-dot"></span> Internal workspace <span class="avatar">A</span></div>
+      </header>
+
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">CONTENT MANAGEMENT</p>
+          <h1>Insights publishing</h1>
+          <p class="subtitle">Create, review and publish articles to the Nivasoft website.</p>
+        </div>
+        <div class="heading-note"><span class="note-icon">✦</span> Changes are saved in this page until you publish or download.</div>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="panel editor-panel">
+          <div class="panel-heading">
+            <div><h2>Article details</h2><p>Enter the article content and publishing information.</p></div>
+            <span class="step-label">EDITOR</span>
+          </div>
+
+          <form id="articleForm" novalidate>
+            <div class="field">
+              <label for="title">Article title <em>Required</em></label>
+              <input id="title" name="title" type="text" placeholder="e.g. Building practical AI workflows" required>
+              <small class="error" id="titleError"></small>
+            </div>
+            <div class="field">
+              <label for="slug">URL slug <em>Required</em></label>
+              <div class="input-prefix"><span>/blog/</span><input id="slug" name="slug" type="text" placeholder="building-practical-ai-workflows" required></div>
+              <small class="hint">Generated from the title. You can edit it manually.</small>
+              <small class="error" id="slugError"></small>
+            </div>
+            <div class="field">
+              <label for="description">SEO description <em>Required</em></label>
+              <textarea id="description" name="description" rows="2" maxlength="320" placeholder="A short summary for search results..." required></textarea>
+              <div class="field-meta"><small class="error" id="descriptionError"></small><small id="descriptionCount">0 / 320</small></div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="date">Publication date <em>Required</em></label>
+                <input id="date" name="date" type="date" required>
+                <small class="error" id="dateError"></small>
+              </div>
+              <div class="field">
+                <label for="category">Category <em>Required</em></label>
+                <select id="category" name="category" required>
+                  <option value="">Select category</option>
+                  <option>Enterprise AI</option><option>GCC</option><option>Security</option><option>Talent</option><option>Salesforce</option>
+                </select>
+                <small class="error" id="categoryError"></small>
+              </div>
+            </div>
+            <div class="field">
+              <label for="tags">Tags <span class="optional">Optional</span></label>
+              <input id="tags" name="tags" type="text" placeholder="Agentic AI, Digital transformation, Cloud">
+              <small class="hint">Separate each tag with a comma.</small>
+            </div>
+            <div class="field">
+              <label for="linkedin">LinkedIn discussion URL <span class="optional">Optional</span></label>
+              <input id="linkedin" name="linkedin" type="url" placeholder="https://www.linkedin.com/company/nivasoft/posts/">
+              <small class="error" id="linkedinError"></small>
+            </div>
+
+            <div class="section-divider"><span>ARTICLE HIGHLIGHT</span><span class="optional">Optional</span></div>
+            <div class="field-row">
+              <div class="field"><label for="statValue">Statistic value</label><input id="statValue" type="text" placeholder="78% vs 23%"></div>
+              <div class="field"><label for="statLabel">Statistic label</label><input id="statLabel" type="text" placeholder="workflow completion rate"></div>
+            </div>
+
+            <div class="toggle-row">
+              <label class="check-label"><input id="featured" type="checkbox"><span><strong>Featured article</strong><small>Highlight this article on the website.</small></span></label>
+              <label class="check-label"><input id="draft" type="checkbox"><span><strong>Save as draft</strong><small>Keep the article unpublished.</small></span></label>
+            </div>
+
+            <div class="section-divider"><span>ARTICLE BODY</span><span class="required-note">Markdown supported</span></div>
+            <div class="field">
+              <label for="body">Content <em>Required</em></label>
+              <textarea id="body" class="body-editor" rows="18" placeholder="# Start writing your article&#10;&#10;Use Markdown for headings, lists, links, quotes and code blocks." required></textarea>
+              <small class="error" id="bodyError"></small>
+              <div class="editor-stats"><span id="wordCount">0 words</span><span id="readingTime">1 min read</span></div>
+            </div>
+          </form>
+        </section>
+
+        <aside class="panel preview-panel">
+          <div class="panel-heading preview-heading">
+            <div><h2>Markdown preview</h2><p>Live output in the website's expected format.</p></div>
+            <span class="live-pill"><span></span> LIVE</span>
+          </div>
+          <div class="file-card">
+            <div class="file-icon">MD</div>
+            <div class="file-info"><strong id="filename">content/blog/your-article.md</strong><small>Markdown file · UTF-8</small></div>
+            <button class="icon-button" id="copyPath" type="button" title="Copy filename" aria-label="Copy filename">▢</button>
+          </div>
+          <div class="preview-toolbar"><span>GENERATED MARKDOWN</span><span id="previewStatus">Waiting for content</span></div>
+          <pre class="markdown-preview" id="markdownPreview"><code>---
+title: "Your article title"
+description: "Your SEO description"
+date: "2026-11-03"
+category: "Enterprise AI"
+---
+
+Your article body will appear here.</code></pre>
+          <div class="preview-actions">
+            <button class="button button-secondary" id="copyMarkdown" type="button">▢ Copy Markdown</button>
+            <button class="button button-secondary" id="downloadMarkdown" type="button">↓ Download .md</button>
+          </div>
+          <div class="publish-card">
+            <div class="publish-card-top"><div><strong>Ready to publish?</strong><p>Validate your article before sending it to GitHub.</p></div><span class="publish-symbol">↗</span></div>
+            <button class="button button-primary" id="publishButton" type="button">Publish article <span>→</span></button>
+            <p class="publish-footnote">Publishing requires an authorized connection to Nivasoft's publishing service.</p>
+          </div>
+          <div class="result-message" id="resultMessage" role="status" aria-live="polite" hidden></div>
+        </aside>
+      </div>
+      <footer>© <span id="year"></span> Nivasoft. Internal publishing portal.</footer>
+    </main>
+  </div>
+
+  <dialog id="confirmDialog" class="confirm-dialog">
+    <form method="dialog">
+      <div class="dialog-icon">↗</div>
+      <h2>Confirm publication</h2>
+      <p>You are about to publish this article to the Nivasoft website.</p>
+      <div class="confirm-details"><span>ARTICLE</span><strong id="confirmTitle"></strong><span>TARGET FILE</span><strong id="confirmFilename"></strong></div>
+      <div class="dialog-actions"><button class="button button-secondary" value="cancel">Cancel</button><button class="button button-primary" id="confirmPublish" value="publish">Confirm and publish</button></div>
+    </form>
+  </dialog>
+
+  <script src="js/markdown-generator.js"></script>
+  <script src="js/publisher.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
